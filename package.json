@@ -9,6 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "googleapis": "^170.0.0",
+    "lucide-react": "^0.562.0",
+    "modbus-serial": "^8.0.23",
     "next": "16.1.2",
     "react": "19.2.3",
     "react-dom": "19.2.3"
