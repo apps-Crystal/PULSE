@@ -1,126 +1,104 @@
-// Warehouse configuration based on user's grid diagram
-// Layout: 4 columns with rooms arranged in a clean grid - Sorted logically
+// Warehouse configuration matching ModbusPal slaves
+// Chiller_Room_1 through Chiller_Room_6 with Slave IDs 1-6
 
 export const WAREHOUSE_CONFIG = {
     rooms: [
-        // Column 1 (Left) - 50x Series
+        // Row 1
         {
-            id: 'Room-501',
-            label: 'Room 501',
+            id: 'Chiller_Room_1',
+            label: 'Chiller Room 1',
             column: 0,
             row: 0,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
             tempSetpoint: -20
         },
         {
-            id: 'Room-502',
-            label: 'Room 502',
+            id: 'Chiller_Room_2',
+            label: 'Chiller Room 2',
             column: 1,
             row: 0,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
             tempSetpoint: -20
         },
         {
-            id: 'Room-503',
-            label: 'Room 503',
+            id: 'Chiller_Room_3',
+            label: 'Chiller Room 3',
             column: 2,
             row: 0,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
-            tempSetpoint: -20
+            tempSetpoint: -18
         },
 
-        // Column 2 - 40x Series
+        // Row 2
         {
-            id: 'Room-401',
-            label: 'Room 401',
+            id: 'Chiller_Room_4',
+            label: 'Chiller Room 4',
             column: 0,
             row: 1,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
             tempSetpoint: 2
         },
         {
-            id: 'Room-402',
-            label: 'Room 402',
+            id: 'Chiller_Room_5',
+            label: 'Chiller Room 5',
             column: 1,
             row: 1,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
-            tempSetpoint: 2
+            tempSetpoint: 4
         },
         {
-            id: 'Room-107',
-            label: 'Room 107',
+            id: 'Chiller_Room_6',
+            label: 'Chiller Room 6',
             column: 2,
             row: 1,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
-            tempSetpoint: 2
+            tempSetpoint: 10
         },
 
-        // Column 3 - 10x Series (First Batch)
+        // Row 3 - Frozen Rooms
         {
-            id: 'Room-101',
-            label: 'Room 101',
+            id: 'Frozen_Room_1',
+            label: 'Frozen Room 1',
             column: 0,
             row: 2,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
-            tempSetpoint: 4
+            tempSetpoint: -25
         },
         {
-            id: 'Room-102',
-            label: 'Room 102',
+            id: 'Frozen_Room_2',
+            label: 'Frozen Room 2',
             column: 1,
             row: 2,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
-            tempSetpoint: 4
+            tempSetpoint: -25
         },
         {
-            id: 'Room-103',
-            label: 'Room 103',
+            id: 'Frozen_Room_3',
+            label: 'Frozen Room 3',
             column: 2,
             row: 2,
-            rowSpan: 1,
             sensors: ['temp', 'door', 'panic'],
-            tempSetpoint: 4
-        },
-
-        // Column 4 (Right) - 10x Series (Second Batch)
-        {
-            id: 'Room-104',
-            label: 'Room 104',
-            column: 3,
-            row: 0,
-            rowSpan: 1,
-            sensors: ['temp', 'door'],
-            tempSetpoint: 10
+            tempSetpoint: -25
         },
         {
-            id: 'Room-105',
-            label: 'Room 105',
-            column: 3,
-            row: 1,
-            rowSpan: 1,
-            sensors: ['temp', 'door'],
-            tempSetpoint: 10
+            id: 'Frozen_Room_4',
+            label: 'Frozen Room 4',
+            column: 0,
+            row: 3,
+            sensors: ['temp', 'door', 'panic'],
+            tempSetpoint: -30
         },
         {
-            id: 'Room-106',
-            label: 'Room 106',
-            column: 3,
-            row: 2,
-            rowSpan: 1,
-            sensors: ['temp', 'door'],
-            tempSetpoint: 10
+            id: 'Frozen_Room_5',
+            label: 'Frozen Room 5',
+            column: 1,
+            row: 3,
+            sensors: ['temp', 'door', 'panic'],
+            tempSetpoint: -30
         }
     ],
 
     // Grid layout settings
-    gridColumns: 4,
-    gridRows: 3
+    gridColumns: 3,
+    gridRows: 4
 };
