@@ -1,7 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Custom theme configuration can go here */
+  /* Custom Pulse Color Theme */
+  --color-pulse-orange: #F79B1E;
+  --color-pulse-blue: #252B59;
+  --color-pulse-orange-light: #FBB454;
+  --color-pulse-orange-dark: #E68A0D;
+  --color-pulse-blue-light: #3A4178;
+  --color-pulse-blue-dark: #1A1E3F;
 }
 
 body {

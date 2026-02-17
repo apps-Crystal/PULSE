@@ -1,17 +1,18 @@
 import { Bell, DoorOpen, Thermometer, PersonStanding, Battery, AlertTriangle } from 'lucide-react';
 
 export default function RoomCard({ roomId, roomName, temperature, sensors, alertMessage, alertType = 'normal' }) {
-    // Determine background color based on alert type - SOLID COLORS
+    // Determine background color based on alert type and room type
+    const isFrozen = roomId?.startsWith('Frozen');
     const getCardColor = () => {
         switch (alertType) {
             case 'critical':
                 return 'bg-red-500';
             case 'warning':
-                return 'bg-amber-500';
+                return 'bg-yellow-500';
             case 'offline':
                 return 'bg-slate-600 grayscale';
             default:
-                return 'bg-emerald-500';
+                return isFrozen ? 'bg-sky-600' : 'bg-emerald-500';
         }
     };
 
@@ -35,15 +36,15 @@ export default function RoomCard({ roomId, roomName, temperature, sensors, alert
     );
 
     return (
-        <div className={`aspect-square flex flex-col justify-between rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 overflow-hidden ${cardColor}`}>
+        <div className={`flex flex-col justify-between rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 overflow-hidden ${cardColor}`}>
             <div>
                 {/* Header with Zone ID */}
-                <div className="px-2 py-1 bg-black/10 flex items-center justify-between border-b border-white/10">
+                <div className="px-3 py-2 bg-black/10 flex items-center justify-between border-b border-white/10">
                     <div className="flex items-center gap-1.5">
-                        <span className="text-[10px] font-bold text-white uppercase tracking-widest drop-shadow-md">{roomName}</span>
+                        <span className="text-xs font-bold text-white uppercase tracking-widest drop-shadow-md">{roomName}</span>
                     </div>
-                    <div className={`px-1 py-0.5 rounded backdrop-blur-md border border-white/20 ${alertType === 'offline' ? 'bg-black/40' : 'bg-white/20'}`}>
-                        <span className="text-[8px] font-bold text-white uppercase tracking-wide">
+                    <div className={`px-2 py-1 rounded backdrop-blur-md border border-white/20 ${alertType === 'offline' ? 'bg-black/40' : 'bg-white/20'}`}>
+                        <span className="text-[9px] font-bold text-white uppercase tracking-wide">
                             {alertType === 'critical' ? 'ALARM' : alertType === 'warning' ? 'WARN' : alertType === 'offline' ? 'OFFLINE' : 'OK'}
                         </span>
                     </div>
@@ -58,12 +59,18 @@ export default function RoomCard({ roomId, roomName, temperature, sensors, alert
                 )}
             </div>
 
-            {/* Middle Spacer / Status Indicator Visual could go here if needed, but for now space is fine */}
-
-            {/* Sensor Icons - Fills the remaining space */}
-            <div className="flex-grow grid grid-cols-2 gap-1 px-1.5 bg-black/10 border-t border-white/10 items-center">
-                <SensorIcon active={sensors.panic} icon={Bell} label="Panic" size={18} />
-                <SensorIcon active={sensors.door} icon={DoorOpen} label="Door" size={18} />
+            {/* Sensor Icons + Temperature - Grid layout */}
+            <div className="flex-grow grid grid-cols-3 gap-2 px-3 py-3 bg-black/10 border-t border-white/10 items-center">
+                <SensorIcon active={sensors.panic} icon={Bell} label="Panic" size={24} />
+                <SensorIcon active={sensors.door} icon={DoorOpen} label="Door" size={24} />
+                {temperature && (
+                    <div className="flex flex-col items-center gap-1">
+                        <div className="relative p-2 rounded-md bg-white/20 backdrop-blur-sm">
+                            <Thermometer size={20} className="text-white drop-shadow-sm" strokeWidth={2.5} />
+                        </div>
+                        <span className="text-[10px] text-white/90 uppercase font-bold tracking-wider">{temperature}°C</span>
+                    </div>
+                )}
             </div>
         </div>
     );

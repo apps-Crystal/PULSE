@@ -137,7 +137,7 @@ export default function SensorECG({ sensorStatus, isConnected, lastUpdate, darkM
 
         // Determine status based on connection and health
         let status = 'normal';
-        if (!isConnected) {
+        if (!isConnected || healthPercentage === 0) {
             status = 'offline';
         } else if (healthPercentage < 50) {
             status = 'critical';
@@ -233,26 +233,26 @@ export default function SensorECG({ sensorStatus, isConnected, lastUpdate, darkM
                 </div>
                 <div className="flex items-center gap-3">
                     <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wide transition-colors duration-300 ${!isConnected ? 'bg-red-100 text-red-600' :
-                            healthPercentage === 100 ? 'bg-emerald-100 text-emerald-600' :
-                                healthPercentage >= 50 ? 'bg-amber-100 text-amber-600' :
-                                    'bg-red-100 text-red-600'
+                        healthPercentage === 100 ? 'bg-orange-100 text-orange-600' :
+                            healthPercentage >= 50 ? 'bg-amber-100 text-amber-600' :
+                                'bg-red-100 text-red-600'
                         }`}>
                         {sensorStatus.activeCount}/{sensorStatus.totalCount} ACTIVE
                     </span>
                     <span className={`text-[9px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wide transition-colors duration-300 ${!isConnected ? 'bg-red-100 text-red-600' :
-                            healthPercentage === 100 ? 'bg-emerald-100 text-emerald-600' :
-                                healthPercentage >= 50 ? 'bg-amber-100 text-amber-600' :
-                                    'bg-red-100 text-red-600'
+                        healthPercentage === 100 ? 'bg-orange-100 text-orange-600' :
+                            healthPercentage >= 50 ? 'bg-amber-100 text-amber-600' :
+                                'bg-red-100 text-red-600'
                         }`}>
                         {healthPercentage}% HEALTH
                     </span>
                 </div>
             </div>
-            <div className="p-4">
+            <div className="p-3">
                 <canvas
                     ref={canvasRef}
-                    width={800}
-                    height={120}
+                    width={600}
+                    height={60}
                     className="w-full h-auto"
                 />
             </div>
